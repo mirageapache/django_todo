@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
+*.log
+db.sqlite3
+/static/
+/media/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Git
+.git/
+
+# Environment variables
+.env
+
+# MacOS
+.DS_Store
+
+# Migrations
+*/migrations/*
+!*/migrations/__init__.py
