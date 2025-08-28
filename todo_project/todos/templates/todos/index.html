@@ -17,6 +17,8 @@
                     ⏳ 未完成
                 {% endif %}
                 （建立於：{{ todo.created_at|date:"Y-m-d H:i" }}）
+                | <a href="{% url 'edit_todo' todo.id %}">編輯</a>
+                | <a href="{% url 'delete_todo' todo.id %}">刪除</a>
             </li>
         {% empty %}
             <li>目前沒有待辦事項</li>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>編輯待辦事項</title>
+</head>
+<body>
+    <h1>編輯：{{ todo.title }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">儲存</button>
+    </form>
+    <p><a href="{% url 'todo_list' %}">回到清單</a></p>
+</body>
+</html>

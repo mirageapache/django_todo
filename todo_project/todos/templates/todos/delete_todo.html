@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>刪除待辦事項</title>
+</head>
+<body>
+    <h1>確認刪除</h1>
+    <p>你確定要刪除 <strong>{{ todo.title }}</strong> 嗎？</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">刪除</button>
+        <a href="{% url 'todo_list' %}">取消</a>
+    </form>
+</body>
+</html>
