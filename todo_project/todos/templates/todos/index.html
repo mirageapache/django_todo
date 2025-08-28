@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>待辦清單</title>
+</head>
+<body>
+    <h1>待辦清單</h1>
+    <ul>
+        {% for todo in todos %}
+            <li>
+                {{ todo.title }} - 
+                {% if todo.is_completed %}
+                    ✅ 已完成
+                {% else %}
+                    ⏳ 未完成
+                {% endif %}
+                （建立於：{{ todo.created_at|date:"Y-m-d H:i" }}）
+            </li>
+        {% empty %}
+            <li>目前沒有待辦事項</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
