@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>待辦清單</h1>
+    <p><a href="{% url 'add_todo' %}">➕ 新增待辦</a></p>
     <ul>
         {% for todo in todos %}
             <li>
