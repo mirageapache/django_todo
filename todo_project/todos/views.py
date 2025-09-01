@@ -40,3 +40,10 @@ def delete_todo(request, todo_id):
     todo.delete()
     return redirect('todo_list')
   return render(request, 'todos/delete_todo.html', {'todo': todo})
+
+# 標記待辦事項為完成或未完成
+def toggle_complete(request, todo_id):
+  todo = get_object_or_404(Todo, id=todo_id)
+  todo.is_completed = not todo.is_completed
+  todo.save()
+  return redirect('todo_list')

@@ -1,28 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>待辦清單</title>
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
     <h1>待辦清單</h1>
     <p><a href="{% url 'add_todo' %}">➕ 新增待辦</a></p>
     <ul>
-        {% for todo in todos %}
-            <li>
-                {{ todo.title }} - 
-                {% if todo.is_completed %}
-                    ✅ 已完成
-                {% else %}
-                    ⏳ 未完成
-                {% endif %}
-                （建立於：{{ todo.created_at|date:"Y-m-d H:i" }}）
-                | <a href="{% url 'edit_todo' todo.id %}">編輯</a>
-                | <a href="{% url 'delete_todo' todo.id %}">刪除</a>
-            </li>
-        {% empty %}
-            <li>目前沒有待辦事項</li>
-        {% endfor %}
+      {% for todo in todos %}
+      <li>
+        {% if todo.is_completed %}
+        <s>{{ todo.title }}</s> ✅
+        <a href="{% url 'toggle_complete' todo.id %}">取消完成</a>
+        {% else %} {{ todo.title }} ⏳
+        <a href="{% url 'toggle_complete' todo.id %}">完成</a>
+        {% endif %} （建立於：{{ todo.created_at|date:"Y-m-d H:i" }}） |
+        <a href="{% url 'edit_todo' todo.id %}">編輯</a> |
+        <a href="{% url 'delete_todo' todo.id %}">刪除</a>
+      </li>
+      {% empty %}
+      <li>目前沒有待辦事項</li>
+      {% endfor %}
     </ul>
-</body>
+  </body>
 </html>
