@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from .models import Todo
 from .forms import TodoForm
 from django.shortcuts import get_object_or_404
+from rest_framework import viewsets
+from .serializers import TodoSerializer
 
 # 待辦清單
 def todo_list(request):
@@ -47,3 +49,7 @@ def toggle_complete(request, todo_id):
   todo.is_completed = not todo.is_completed
   todo.save()
   return redirect('todo_list')
+
+class TodoViewSet(viewsets.ModelViewSet):
+  queryset = Todo.objects.all().order_by('-created_at')
+  serializer_class = TodoSerializer
