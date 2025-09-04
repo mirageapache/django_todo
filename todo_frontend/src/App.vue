@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import TodoForm from "./views/TodoForm.vue";
+import { getAllTodosAPI } from "./api/todos";
 
 interface Todo {
   id: number;
@@ -9,15 +11,20 @@ interface Todo {
 
 const todos = ref<Todo[]>([]);
 
-onMounted(async () => {
-  const res = await fetch("http://127.0.0.1:8000/api/todos/");
-
+/** get Todos */
+const getTodos = async () => {
+  const res = await getAllTodosAPI();
   console.log(res);
-  todos.value = await res.json();
+  todos.value = res;
+};
+
+onMounted(async () => {
+  await getTodos();
 });
 </script>
 
 <template>
+  <TodoForm :refetchTodos="getTodos" />
   <h1>待辦清單（Vue + Django API）</h1>
   <ul>
     <li v-for="todo in todos" :key="todo.id">
